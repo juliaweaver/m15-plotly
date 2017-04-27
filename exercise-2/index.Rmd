@@ -1,0 +1,51 @@
+---
+title: "index"
+output: html_document
+---
+#install.packages("plotly")
+library(plotly)
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+
+
+x <- c('eat', 'sleep', 'weed')
+y <- c(45, 5, 50)
+text <- c('45%', '5%', '50%')
+data <- data.frame(x, y, text)
+
+p1 <- plot_ly(data, x = ~x, y = ~y, type = 'bar', text = text,
+        marker = list(color = 'rgb(158,202,225)',
+                      line = list(color = 'rgb(8,48,107)',
+                                  width = 1.5))) %>%
+  layout(title = "my life",
+         xaxis = list(title = ""),
+         yaxis = list(title = ""))
+
+# Create some data
+Primates <- c('Strawberry Cough', 'Platnum Girlscout Cookies', 'Pineapple Express', 'AK 47', 'Khalifa Kush')
+Bodywt <- c(10.0, 207.0, 62.0, 6.8, 52.2)
+Brainwt <- c(115, 406, 1320, 179, 440)
+data <- data.frame(Primates, Bodywt, Brainwt)
+
+# Create a plotly object
+p2 <- plot_ly(data, x = ~Bodywt, y = ~Brainwt, type = 'scatter',
+        mode = 'text', text = ~Primates, textposition = 'middle right',
+        textfont = list(color = '#000000', size = 16)) %>%
+# Pass object to the layout function
+        layout(title = 'fave strains',
+             xaxis = list(title = 'thc',
+                          zeroline = TRUE,
+                          range = c(0, 250)),
+             yaxis = list(title = 'high',
+                          range = c(0,1400)))
+
+p <- plot_ly(data = iris, x = ~Sepal.Length, y = ~Petal.Length, type = "scatter")
+
+
+```
+'r p1'
+'r p2'
+
